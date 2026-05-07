@@ -1,6 +1,5 @@
 import { supabase } from '../../../lib/supabaseClient';
 import BottomNav from '../../../components/BottomNav';
-import CarteMap from '../../../components/CarteMap';
 import Link from 'next/link';
 
 export default async function LieuPage({ params }: { params: Promise<{ id: string }> }) {
@@ -16,7 +15,6 @@ export default async function LieuPage({ params }: { params: Promise<{ id: strin
 
   return (
     <div className="min-h-screen bg-[#f7f7f7] pb-28">
-      {/* Image / Header */}
       <div className="relative h-64 bg-[#F77F00] flex items-center justify-center">
         {lieu.image_url
           ? <img src={lieu.image_url} alt={lieu.nom} className="w-full h-full object-cover"/>
@@ -32,7 +30,6 @@ export default async function LieuPage({ params }: { params: Promise<{ id: strin
       </div>
 
       <div className="p-4 space-y-4">
-        {/* Infos rapides */}
         <div className="bg-white rounded-2xl p-4 grid grid-cols-3 gap-3 text-center">
           <div>
             <p className="text-[#F77F00] font-black text-base">{lieu.note} ★</p>
@@ -48,7 +45,6 @@ export default async function LieuPage({ params }: { params: Promise<{ id: strin
           </div>
         </div>
 
-        {/* Description */}
         {lieu.description && (
           <div className="bg-white rounded-2xl p-4">
             <h2 className="font-black text-sm text-gray-900 uppercase tracking-widest mb-2">À propos</h2>
@@ -56,7 +52,6 @@ export default async function LieuPage({ params }: { params: Promise<{ id: strin
           </div>
         )}
 
-        {/* Contact */}
         {lieu.telephone && (
           <div className="bg-white rounded-2xl p-4">
             <h2 className="font-black text-sm text-gray-900 uppercase tracking-widest mb-3">Contact</h2>
@@ -66,20 +61,10 @@ export default async function LieuPage({ params }: { params: Promise<{ id: strin
           </div>
         )}
 
-        {/* Carte Google Maps */}
-        {lieu.latitude && lieu.longitude && (
-          <div className="bg-white rounded-2xl overflow-hidden">
-            <div className="p-4 pb-2">
-              <h2 className="font-black text-sm text-gray-900 uppercase tracking-widest">Localisation</h2>
-            </div>
-            <CarteMap lat={lieu.latitude} lng={lieu.longitude} nom={lieu.nom} />
-          </div>
-        )}
-
-        {/* WhatsApp */}
         
           href={`https://wa.me/2250000000000?text=Bonjour, je suis intéressé par ${lieu.nom}`}
           target="_blank"
+          rel="noopener noreferrer"
           className="flex items-center justify-center gap-3 w-full bg-[#25D366] text-white py-4 rounded-2xl font-black text-sm uppercase tracking-wider"
         >
           💬 Contacter via WhatsApp
